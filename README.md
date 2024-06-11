@@ -1,5 +1,7 @@
 # AMQP 1.0 Client Module for Go
 
+> **_NOTE:_** The sole purpose of this fork is to handle the fact that Azure IoT Hub with Gateway v2 doesn't follow [the spec](https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html#type-flow). See [comment in https://github.com/Azure/go-amqp/issues/326](https://github.com/Azure/go-amqp/issues/326#issuecomment-2110327268).
+
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/Azure/go-amqp)](https://pkg.go.dev/github.com/Azure/go-amqp)
 [![Build Status](https://dev.azure.com/azure-sdk/public/_apis/build/status/go/Azure.go-amqp?branchName=main)](https://dev.azure.com/azure-sdk/public/_build/latest?definitionId=1292&branchName=main)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Azure/go-amqp)](https://goreportcard.com/report/github.com/Azure/go-amqp)

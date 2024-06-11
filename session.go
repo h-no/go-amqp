@@ -463,11 +463,16 @@ func (s *Session) mux(remoteBegin *frames.PerformBegin) {
 					// This is a protocol error:
 					//       "[...] MUST be set if the peer has received
 					//        the begin frame for the session"
-					closeWithError(&Error{
-						Condition:   ErrCondNotAllowed,
-						Description: "next-incoming-id not set after session established",
-					}, errors.New("protocol error: received flow without next-incoming-id after session established"))
-					continue
+
+					// As Azure IoT Hub with Gateway v2 does not send the next-incoming-id in the flow frame,
+					// we will not close the session here. But handle the error and continue.
+					// See https://github.com/Azure/go-amqp/issues/326
+					*body.NextIncomingID = uint32(0)
+
+					// closeWithError(&Error{
+					// 	Condition:   ErrCondNotAllowed,
+					// 	Description: "next-incoming-id not set after session established",
+					// }, errors.New("protocol error: received flow without next-incoming-id after session established"))
 				}
 
 				// "When the endpoint receives a flow frame from its peer,
